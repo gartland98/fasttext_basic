@@ -146,7 +146,6 @@ def main():
         if stats[word]>4:
             words.append(word)
 
-    freqtable = []
     vocab = set(words)
     vocabs=[]
     for i in vocab:
@@ -184,6 +183,7 @@ def main():
         freqdict[w2i[word]] = stats[word]
 
     #Frequency table for negative sampling
+    freqtable = []
     for k,v in stats.items():
         f = int(v**0.75)
         for _ in range(f):
