@@ -102,8 +102,8 @@ def word2vec_trainer(input_seq, target_seq, ind2word,char2ind, num_of_ngram, num
 def sim(testword, char2ind, ind2char, matrix):
     length = (matrix * matrix).sum(1) ** 0.5
     wi = char2ind[testword]
-    inputVector = matrix[wi].reshape(1, -1) / length[wi]
-    sim = torch.mm(inputVector, matrix.t())[0] / length
+    L2norm = matrix[wi].reshape(1, -1) / length[wi]
+    sim = torch.mm(L2norm, matrix.t())[0] / length
     values, indices = sim.squeeze().topk(5)
 
     print()
